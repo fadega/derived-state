@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React,{useState} from "react";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import Box from "./components/Box";
+import boxs from "./boxs";
+
 
 function App() {
+  const [user, setUser] = useState("Abun");
+  const [squares, setSquares] = useState(boxs);
+  const squarElements = squares.map(square => {
+    return (
+      <Box  key={square.id}   on={square.on}   />
+    );
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header user={user}/>
+      <Body user={user}/>
+      {squarElements}
     </div>
   );
 }
